@@ -1,0 +1,243 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Walker Doc",
+        "description": "Documentation for this Walker project. In case you encounter any issue, please test the endpoints on Postman as an alternative",
+        "contact": {
+            "email": "mekus600@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0",
+        "x-logo": {
+            "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
+        }
+    },
+    "paths": {
+        "/api/dashboard/schedules": {
+            "get": {
+                "description": "Fetches all schedules",
+                "operationId": "d33e6a5609f5d3c8a8ec3914aebb0c5a",
+                "parameters": [
+                    {
+                        "name": "X-XSRF-TOKEN",
+                        "in": "header",
+                        "description": "for CORS protection (Refer to the 'sanctum/csrf-cookie' endpoint)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Filters the result using period within this date",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Invalid input or incomplete form entry"
+                    },
+                    "200": {
+                        "description": "Successful; returns an object containing relevant information to be displayed to the user"
+                    }
+                }
+            }
+        },
+        "/dashboard/create-schedule": {
+            "post": {
+                "description": "Creates a new schedule",
+                "operationId": "72f3b5e1b196ca53671c74736ed00a79",
+                "parameters": [
+                    {
+                        "name": "X-XSRF-TOKEN",
+                        "in": "header",
+                        "description": "for CORS protection (Refer to the 'sanctum/csrf-cookie' endpoint)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "service",
+                        "in": "query",
+                        "description": "What service is this schedule for (can be anything you define)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "vehicle",
+                        "in": "query",
+                        "description": "The vechicle (represented by its ID) to assign to this schedule",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "driver",
+                        "in": "query",
+                        "description": "The driver (represented by its ID) to assign to this schedule",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "client",
+                        "in": "query",
+                        "description": "The client (represented by its ID) to assign to this schedule",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "description": "A valid date representing when this schedule should kick off",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "start_time",
+                        "in": "query",
+                        "description": "A valid time representing the time in the start_date when this schedule should kick off",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "A valid date representing the end of this schedule",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "end_time",
+                        "in": "query",
+                        "description": "A valid time representing the time in the end_date when this schedule should end",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "pickup",
+                        "in": "query",
+                        "description": "The pickup location/address",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "dropoff",
+                        "in": "query",
+                        "description": "The drop-off location/address",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Invalid input or incomplete form entry"
+                    },
+                    "200": {
+                        "description": "Successful; returns a string containing a success message."
+                    }
+                }
+            }
+        },
+        "/sanctum/csrf-cookie": {
+            "get": {
+                "description": "Before authentication, make a request to this endpoint to receive and enable CORS protection. It sets a 'XSRF-TOKEN'  \n     *     cookie containing the current CSRF token. This token should then be passed in an X-XSRF-TOKEN header on subsequent requests.",
+                "operationId": "4a5465c1c9543a99634f7914b5b84fc4",
+                "responses": {
+                    "204": {
+                        "description": "Successful; returns nothing"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "Logs in a user using valid credentials",
+                "operationId": "abc53c091ac89d7a2af0892997d1ee08",
+                "parameters": [
+                    {
+                        "name": "X-XSRF-TOKEN",
+                        "in": "header",
+                        "description": "for CORS protection",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Email address to use for the login",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password of the user",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Invalid credentials"
+                    },
+                    "200": {
+                        "description": "Successful; returns an object containing a token which should be attached in \n     *         the header for subsequent authentication requests."
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "get": {
+                "description": "Logs out the current user.",
+                "operationId": "27282c80c923a9a2205bfbd46ab906ee",
+                "responses": {
+                    "200": {
+                        "description": "Successful; returns object"
+                    }
+                }
+            }
+        }
+    },
+    "security": {
+        "sanctum": {
+            "description": "Bearer",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

@@ -11,6 +11,38 @@ use Illuminate\Support\Arr;
 
 class ScheduleController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/api/dashboard/schedules",
+     *     description="Fetches all schedules",
+     *     @OA\Parameter(
+     *         name="X-XSRF-TOKEN",
+     *         in="header",
+     *         description="for CORS protection (Refer to the 'sanctum/csrf-cookie' endpoint)",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="date",
+     *         in="query",
+     *         description="Filters the result using period within this date",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Invalid input or incomplete form entry"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful; returns an object containing relevant information to be displayed to the user"
+     *     )
+     * )
+     */
     public function schedules(Calendar $calendar)
     {
         request()->validate([
@@ -38,7 +70,7 @@ class ScheduleController extends Controller
             'type'=> (request()->filled('type') and request()->type == 'driver') ? 'driver' : 'vehicle'
         ];
 
-        return view('schedules', $data);
+        return request()->ajax() ? $data : view('schedules', $data);
     }
 
     public function createSchedulePage()
@@ -50,6 +82,119 @@ class ScheduleController extends Controller
         return view('create-schedule', ['drivers'=>$drivers, 'clients'=>$clients, 'vehicles'=>$vehicles]);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/dashboard/create-schedule",
+     *     description="Creates a new schedule",
+     *     @OA\Parameter(
+     *         name="X-XSRF-TOKEN",
+     *         in="header",
+     *         description="for CORS protection (Refer to the 'sanctum/csrf-cookie' endpoint)",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="service",
+     *         in="query",
+     *         description="What service is this schedule for (can be anything you define)",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="vehicle",
+     *         in="query",
+     *         description="The vechicle (represented by its ID) to assign to this schedule",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="driver",
+     *         in="query",
+     *         description="The driver (represented by its ID) to assign to this schedule",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="client",
+     *         in="query",
+     *         description="The client (represented by its ID) to assign to this schedule",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="start_date",
+     *         in="query",
+     *         description="A valid date representing when this schedule should kick off",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="start_time",
+     *         in="query",
+     *         description="A valid time representing the time in the start_date when this schedule should kick off",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     * @OA\Parameter(
+     *         name="end_date",
+     *         in="query",
+     *         description="A valid date representing the end of this schedule",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="end_time",
+     *         in="query",
+     *         description="A valid time representing the time in the end_date when this schedule should end",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="pickup",
+     *         in="query",
+     *         description="The pickup location/address",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="dropoff",
+     *         in="query",
+     *         description="The drop-off location/address",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Invalid input or incomplete form entry"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful; returns a string containing a success message."
+     *     )
+     * )
+     */
     public function createSchedule()
     {
         request()->validate([

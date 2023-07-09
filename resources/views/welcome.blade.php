@@ -8,7 +8,7 @@
             <div class='col-lg-12  mx-auto row'>
                 <div class='col-lg-7'>
                     <h1 style="font-size:3.4rem;" class='fw-bolder'>Did You Know?</h1>
-                    <p class="fs-2 fw-bold">Welcome To Our To-do Planner And Administration Software</p>
+                    <p class="fs-2 fw-bold">Welcome To Our Scheduler Software</p>
                 </div>
                 <div class='col-lg-5'>
                     <div>

@@ -1,17 +1,8 @@
 <?php
 namespace App\MyClass;
 
-use function Symfony\Component\VarDumper\Dumper\esc;
-
 class Calendar {  
-     
-    /**
-     * Constructor
-     */
-    public function __construct(){     
-        $this->naviHref = url()->current();
-    }
-     
+
     /********************* PROPERTY ********************/  
     private $dayLabels = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
      
@@ -122,9 +113,9 @@ class Calendar {
     private function _createNavi(){
         return
             '<div class="header">'.
-                '<a class="prev" href="'.request()->fullUrlWithQuery(['date'=>carbon($this->date)->subMonth()->toDateString()]).'">Prev</a>'.
+                '<a class="prev" href="'.request()->fullUrlWithQuery(['date'=>carbon($this->date)->subMonth()->toDateString()]).'">&lt;</a>'.
                     '<span class="title">'.carbon($this->date)->format('F Y').'</span>'.
-                '<a class="next" href="'.request()->fullUrlWithQuery(['date'=>carbon($this->date)->addMonth()->toDateString()]).'">Next</a>'.
+                '<a class="next" href="'.request()->fullUrlWithQuery(['date'=>carbon($this->date)->addMonth()->toDateString()]).'">&gt;</a>'.
             '</div>';
     }
     

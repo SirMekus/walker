@@ -7,8 +7,8 @@
         <div class="header-sideimage-sign mt-5">
           <img class="header-sideimage-img-sign" src="{{asset('storage/for_site/staff.webp')}}" alt="">
           <div class="header-content">
-            <h1 class="header-sideimage-img-sign-text">Your No.1 Activity Manager</h1>
-            <p class="header-sideimage-img-sign-text-p ">Providing swift and easy administration.</p>
+            <h1 class="header-sideimage-img-sign-text">Your No.1 Schedule Manager</h1>
+            <p class="header-sideimage-img-sign-text-p ">Providing swift and easy scheduling.</p>
           </div>
         </div>
       </div>

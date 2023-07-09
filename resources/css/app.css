@@ -1,5 +1,5 @@
 :root{
-	--color-theme:#03a3a3;
+	--color-theme:#0f3787;
 }
 
 .text-home{color:var(--color-theme) !important;}
@@ -11,6 +11,16 @@
 .btn-home:hover{color:white} 
 
 .bg-indicator{background-color:var(--color-theme)}
+
+.bg-green-200{background-color:rgb(16 172 97)}
+
+.text-green-200{color:rgb(16 172 97)}
+
+.bg-orange-200{background-color:#f8ac21de}
+
+.text-orange-200{color:#f8ac21de}
+
+.analytic-card{max-height:120px;}
 
 div#calendar{
 	margin:0px auto;

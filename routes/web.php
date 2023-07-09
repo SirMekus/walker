@@ -19,8 +19,6 @@ Route::get('/', function () {
 
 Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::get('schedules', [App\Http\Controllers\ScheduleController::class, 'schedules'])->name('schedules');
-   
-    Route::get('users', [App\Http\Controllers\UserController::class, 'users'])->name('users');
 
     Route::get('create-schedule', [App\Http\Controllers\ScheduleController::class, 'createSchedulePage'])->name('create_schedule');
 

@@ -1,7 +1,6 @@
 import { registerEventListeners, lazyLoadImages, on, showSpinner, removeSpinner, showCanvass } from "mmuo"
 import * as bootstrap from '~bootstrap';
 import axios from 'axios';
-import lodash from 'lodash';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -13,22 +12,24 @@ window.addEventListener("DOMContentLoaded", function() {
     registerEventListeners()
     lazyLoadImages()
 
-    on('#search-type', 'change', function(event){
-        let value = event.currentTarget.value;
-        console.log(new URL(location.href+'?type='+value).href)
-        //location.href = new URL(location.href+'?type='+value).href
+    on('.toggle-caret', 'click', function(event){
+        let element = event.currentTarget;
+        let caret = element.querySelector('.caret');
+
+        if(caret.classList.contains('fa-caret-down')){
+            caret.classList.remove('fa-caret-down')
+            caret.classList.add('fa-caret-up')
+        }
+        else{
+            caret.classList.remove('fa-caret-up')
+            caret.classList.add('fa-caret-down')
+        }
     });
 
-    on('#calendarModal', 'show.bs.modalchange', function(event){
-        let week = [...document.querySelector('#currentDate').parentElement.children]
-        week.forEach(function (currentValue, currentIndex, listObj) {
-            let date = listObj[currentIndex].children[0];
-            if(!date.classList.contains('bg-warning') && !date.classList.contains('bg-primary')){
-                if(date.text){
-                    date.classList.add('bg-warning')
-                }
-            }
-        })
+    on('#search-type', 'change', function(event){
+        let value = event.currentTarget.value;
+        let currentURL=location. protocol + '//' + location. host + location. pathname; currentURL;
+        location.href = currentURL+'?type='+value
     });
 
     on('.logout-form', 'click', function(event){

@@ -1,18 +1,24 @@
 ## Installation
 
 For these instructions I assume you have a development server on your local machine.
-If you don't the below could differ a bit especially in the area of URL for navigation. If your URL won't be served from a "localhost" (or 127.0.0.1) then you may experience CORS issue. In this case just send me the domain from which you're testing so that I can add it to the 'Whitelist'
+If you don't the below could differ a bit especially in the area of URL for navigation. It is believed your URL will be served from "localhost" (or 127.0.0.1). However, no matter where it will be served from the output and instruction should still remain the same.
 
 1. Clone this repository
-1. Run composer install
+1. Run `composer install`
 1. Create and fill the .env file (example included /.env-example)
 1. Run `php artisan migrate` to create database tables
-1. Seed the database by running `php artisan db:seed`
-1. Seed the database by running `php artisan db:seed --class=SpecialAdminSeeder`. This command will create a default Admin account with super abilities such that you can then log in. The credentials are below.
+1. Seed the database with random Drivers by running `php artisan db:seed DriverSeeder`
+1. Seed the database with random vehicles by running `php artisan db:seed VehicleSeeder`
+1. Seed the database with random Clients by running `php artisan db:seed ClientSeeder`
+1. Seed the database with our main User by running `php artisan db:seed SpecialUserSeeder`. This command will create a user account with 'super abilities'. Okay, I guess I'm being too 'super-heroic'; it simply means the ability to log in and use the 'platform' The credentials are below.
 1. Run `php artisan storage:link`
 
 1. Visit http://your-backend/login and happy surfing
 
+At this juncture, welcome on board, boss.
+
 Login details: mekus600@gmail.com / password
 
-> Please note that for all admins and users created their default passwords are "password" and their username can be fetched from the database - in this case their email address.
+> Please note that a Relational database (MySQL) was used in this project because of its ease of definition of relationship among entities, flexibility as well as its ease of use.
+
+>NB: visit localhost/api/documentation for the documentation

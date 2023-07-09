@@ -10,7 +10,7 @@
 
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0" style='background-color:#0f3787'>
+            <div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 home-color" >
                 
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 sticky-top">
                     <div class='p-5 border-bottom'>
@@ -18,10 +18,10 @@
                         <span class='fw-bold pt-3 d-flex justify-content-center'>
                             {{request()->user()->name['firstname']}} {{request()->user()->name['lastname']}}
                         </span>
-                        <span class='text-muted'>Admin</span>
+                        <span class='text-gray-200 d-flex justify-content-center'>{{ucwords(request()->user()->role)}}</span>
 
                         <a href="{{route('home')}}" class="nav-link font-weight-bold text-light align-middle px-0 pt-4">
-                            <i class="fs-5 fas fa-house-user"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                            <i class="fs-5 fas fa-house-user"></i> <span class="ms-1 d-none d-sm-inline">Home </span>
                         </a>
                     </div>
                     
@@ -29,13 +29,15 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link font-weight-bold text-light align-middle px-0">
                                 <i class="fs-6 fas fa-share-nodes"></i> <span class="ms-1 d-none d-sm-inline">Business Development</span>
+                                <span class="fs-6 fas fa-caret-down"></span>
                             </a>
                         </li>
 
                         <li class="nav-item pt-2">
-                            <a href="#reservation" class="nav-link font-weight-bold text-light align-middle px-0" role="button"  data-bs-toggle="collapse" aria-expanded="false">
+                            <a href="#reservation" class="nav-link font-weight-bold text-light align-middle px-0 toggle-caret" role="button"  data-bs-toggle="collapse" aria-expanded="false">
                                 <span class='border-start border-4'>
                                 <i class="fs-6 fas fa-tag ps-2"></i> <span class="ms-1 d-none d-sm-inline">Reservations</span>
+                                <span class="fs-6 fas fa-caret-down caret"></span>
                                 </span>
                             </a>
                             <div class="collapse" id='reservation'>
@@ -57,24 +59,28 @@
                         <li class="nav-item pt-2">
                             <a href="#" class="nav-link font-weight-bold text-light align-middle px-0">
                                 <i class="fs-6 fas fa-coins"></i> <span class="ms-1 d-none d-sm-inline">Operations</span>
+                                <span class="fs-6 fas fa-caret-down"></span>
                             </a>
                         </li>
 
                         <li class="nav-item pt-2">
                             <a href="#" class="nav-link font-weight-bold text-light align-middle px-0">
                                 <i class="fs-6 fas fa-file-alt"></i> <span class="ms-1 d-none d-sm-inline">Infrastructure</span>
+                                <span class="fs-6 fas fa-caret-down"></span>
                             </a>
                         </li>
 
                         <li class="nav-item pt-2">
                             <a href="#" class="nav-link font-weight-bold text-light align-middle px-0">
                                 <i class="fs-6 fas fa-coins"></i> <span class="ms-1 d-none d-sm-inline">Reports &amp; Tools</span>
+                                <span class="fs-6 fas fa-caret-down"></span>
                             </a>
                         </li>
 
                         <li class="nav-item pt-2">
                             <a href="#" class="nav-link font-weight-bold text-light align-middle px-0">
                                 <i class="fs-6 fas fa-cog"></i> <span class="ms-1 d-none d-sm-inline">Setup</span>
+                                <span class="fs-6 fas fa-caret-down"></span>
                             </a>
                         </li>
                         
